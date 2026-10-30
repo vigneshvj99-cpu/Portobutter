@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jobs · Get Butter</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Get Butter home">butter<span class="dot">.</span></a>
+    <nav class="nav" aria-label="Main">
+      <a class="btn" href="index.html#venues">I'm hiring</a>
+      <a class="btn btn-yellow" href="index.html#talent">Join the list</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <section class="jobs-hero">
+    <span class="mono eyebrow" data-job-count>Live roles · Cotswolds &amp; UK</span>
+    <h1>Places worth<br>working for<span class="dot">.</span></h1>
+  </section>
+  <div class="filters" role="search">
+    <label class="sr-only" for="f-q">Search roles or venues</label>
+    <input id="f-q" type="search" placeholder="Search roles or venues">
+    <label class="sr-only" for="f-area">Role type</label>
+    <select id="f-area"><option value="">All roles</option></select>
+    <label class="sr-only" for="f-loc">Location</label>
+    <select id="f-loc"><option value="">All locations</option></select>
+    <label class="sr-only" for="f-type">Hours</label>
+    <select id="f-type"><option value="">Full &amp; part time</option></select>
+  </div>
+  <div class="job-grid" data-job-grid aria-live="polite"></div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="mono">© <span data-year></span> Get Butter · Sample roles for preview only</span>
+    <nav class="mono" aria-label="Footer"><a href="index.html">Home</a><a href="privacy.html">Privacy</a></nav>
+  </div>
+</footer>
+<script src="assets/jobs-data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
