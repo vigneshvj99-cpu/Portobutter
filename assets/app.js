@@ -86,6 +86,22 @@
     });
   });
 
+  /* ---------- talent form: "Other" role makes the free-text box required ---------- */
+  const roleSel = document.getElementById("t-role");
+  const otherInput = document.getElementById("t-other");
+  const otherLabel = document.querySelector("[data-other-label]");
+  if (roleSel && otherInput && otherLabel) {
+    const syncOther = () => {
+      const isOther = roleSel.value === "Other";
+      otherInput.required = isOther;
+      otherLabel.textContent = isOther ? "Tell us your role" : "Other roles you do (optional)";
+      otherInput.placeholder = isOther ? "e.g. sommelier, events coordinator…" : "e.g. barista, events, hotel reception…";
+      if (!isOther) setError(otherInput, "");
+    };
+    roleSel.addEventListener("change", syncOther);
+    syncOther();
+  }
+
   /* ---------- thanks page ---------- */
   const thanksName = document.querySelector("[data-thanks-name]");
   if (thanksName) {
