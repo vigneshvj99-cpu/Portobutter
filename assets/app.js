@@ -116,7 +116,9 @@
     if (body) {
       const sent = email ? `We'll be in touch at <strong>${esc(email)}</strong>. ` : "";
       const msg =
-        type === "venue"
+        type === "contact"
+          ? "Thanks for your message. We'll get back to you shortly."
+          : type === "venue"
           ? "When we open the doors you'll be first in line for vetted hospitality talent."
           : type === "application"
           ? "Your application is in. We'll review it and get back to you soon."
@@ -206,6 +208,17 @@
       const hidden = document.getElementById("job-id");
       if (hidden) hidden.value = `${j.id} (${j.title}, ${j.location})`;
     }
+  }
+
+  /* ---------- mobile menu (full site) ---------- */
+  const menuBtn = document.querySelector("[data-menu]");
+  const topnav = document.getElementById("topnav");
+  if (menuBtn && topnav) {
+    menuBtn.addEventListener("click", () => {
+      const open = topnav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.textContent = open ? "Close" : "Menu";
+    });
   }
 
   /* ---------- footer year ---------- */
