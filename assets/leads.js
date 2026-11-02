@@ -1,17 +1,26 @@
 /*
  * ONE place where every form submission goes.
  *
- * Prototype: logs the data and pretends it worked.
- * When the CRM is confirmed, replace the body of submitLead() with the
- * CRM call (API, webhook or Zapier URL). Nothing else on the site needs
- * to change.
+ * FORMSPREE_ID: paste the Formspree form ID here (e.g. "xyzabcd") and every
+ * sign-up is emailed to you and stored in Formspree. While it is empty the
+ * site only logs sign-ups to the browser console. NOTHING IS SAVED.
  *
- * type: "venue" | "talent" | "application"
+ * Later, swap the body of submitLead() for the JobAdder connection.
+ * type: "venue" | "talent"
  */
+const FORMSPREE_ID = "";
+
 window.submitLead = async function submitLead(type, data) {
-  // TODO(CRM): send to the CRM here, e.g.
-  // await fetch(CRM_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type, ...data }) });
-  console.log("[Get Butter] new lead", type, data);
-  await new Promise((r) => setTimeout(r, 600)); // simulate network
+  if (!FORMSPREE_ID) {
+    console.warn("[Get Butter] FORMSPREE_ID not set. Sign-up NOT saved:", type, data);
+    await new Promise((r) => setTimeout(r, 400));
+    return { ok: true };
+  }
+  const res = await fetch("https://formspree.io/f/" + FORMSPREE_ID, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({ type, _subject: `New ${type} sign-up: ${data.name || ""}`, ...data }),
+  });
+  if (!res.ok) throw new Error("Submit failed: " + res.status);
   return { ok: true };
 };
