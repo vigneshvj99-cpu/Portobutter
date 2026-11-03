@@ -109,3 +109,9 @@
   .panel { padding: 24px; }
   .panel h2 { font-size: 42px; }
 }
+
+/* contact details: one row per item so long values never get cut off */
+.facts2 { grid-template-columns: minmax(0, 1fr); }
+.facts2 > div { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 16px; padding: 16px 18px; }
+.facts2 .mono { margin-bottom: 0; }
+.facts2 > div > :last-child { overflow-wrap: anywhere; }
