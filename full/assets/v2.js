@@ -57,7 +57,7 @@ function frame(){
       if (d < L) {
         const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, md = Math.hypot(mx - mouse.x, my - mouse.y);
         const near = md < R * 1.6 ? 1 - md / (R * 1.6) : 0;
-        ctx.strokeStyle = `rgba(255,196,0,${(1 - d / L) * (0.22 + near * 0.6 + boost * 0.2)})`;
+        ctx.strokeStyle = isLight() ? `rgba(176,122,0,${Math.min(1,(1 - d / L) * (0.38 + near * 0.6 + boost * 0.2))})` : `rgba(255,196,0,${(1 - d / L) * (0.22 + near * 0.6 + boost * 0.2)})`;
         ctx.lineWidth = DPR * (0.7 + near * 0.6);
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
       }
@@ -65,7 +65,7 @@ function frame(){
   }
   for (const p of pts) {
     const md = Math.hypot(p.x - mouse.x, p.y - mouse.y), near = md < R ? 1 - md / R : 0;
-    ctx.fillStyle = `rgba(255,${200 + near * 40},${80 + near * 100},${0.75 + near * 0.25})`;
+    ctx.fillStyle = isLight() ? `rgba(${170 + near * 30},${116 + near * 30},0,${0.8 + near * 0.2})` : `rgba(255,${200 + near * 40},${80 + near * 100},${0.75 + near * 0.25})`;
     ctx.beginPath(); ctx.arc(p.x, p.y, p.r + near * 1.5 * DPR, 0, 7); ctx.fill();
   }
   if (!reduce) requestAnimationFrame(frame);
@@ -163,3 +163,17 @@ function showPane(id){
   if (window.ScrollTrigger) ScrollTrigger.refresh();
 }
 document.querySelectorAll('.ftabs [data-pane]').forEach(b => b.addEventListener('click', () => showPane(b.dataset.pane)));
+
+/* light / dark switch */
+function isLight(){ return document.documentElement.dataset.theme === 'light'; }
+(function(){
+  const btn = document.getElementById('themeBtn'); if (!btn) return;
+  const sync = () => { const l = isLight(); btn.setAttribute('aria-label', l ? 'Switch to dark mode' : 'Switch to light mode'); btn.title = l ? 'Dark mode' : 'Light mode'; const m = document.querySelector('meta[name=theme-color]'); if (m) m.content = l ? '#f5f1e6' : '#050505'; };
+  btn.addEventListener('click', () => {
+    const next = isLight() ? 'dark' : 'light';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('gb_theme', next); } catch (_) {}
+    sync();
+  });
+  sync();
+})();
