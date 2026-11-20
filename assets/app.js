@@ -218,6 +218,30 @@
       const open = topnav.classList.toggle("open");
       menuBtn.setAttribute("aria-expanded", String(open));
       menuBtn.textContent = open ? "Close" : "Menu";
+      document.body.classList.toggle("menu-open", open);
+    });
+    topnav.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        topnav.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "Menu";
+        document.body.classList.remove("menu-open");
+      })
+    );
+  }
+
+  /* ---------- scroll reveal (full site) ---------- */
+  if (document.querySelector(".footer-full") && "IntersectionObserver" in window) {
+    document.documentElement.classList.add("js");
+    const targets = document.querySelectorAll("main .h2, main .page-hero > *, main .qcard, main .steps li, main .feature, main .banner > *, main .split > *");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    targets.forEach((el, i) => {
+      el.classList.add("reveal");
+      const sib = el.parentElement ? [...el.parentElement.children].indexOf(el) : 0;
+      el.style.transitionDelay = Math.min(sib, 4) * 90 + "ms";
+      io.observe(el);
     });
   }
 
