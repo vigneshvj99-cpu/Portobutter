@@ -71,7 +71,7 @@
         data[k] = v instanceof File ? (v.name ? { name: v.name, size: v.size, type: v.type } : null) : v;
       });
       try {
-        await window.submitLead(form.dataset.lead, data);
+        await window.submitLead(form.dataset.lead, data, form);
         try {
           sessionStorage.setItem("gb_name", (data.name || "").trim().split(/\s+/)[0] || "");
           sessionStorage.setItem("gb_email", data.email || "");

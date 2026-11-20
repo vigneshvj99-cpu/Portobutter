@@ -324,4 +324,95 @@ footer .giant a{color:inherit}
   .facts .v{text-align:left}
   .thanks .box{padding:40px 22px}
 }
+
+/* two-form section */
+.forms2{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.fcard{display:flex;flex-direction:column}
+.fcard h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(40px,4vw,60px);line-height:1;margin:10px 0 8px}
+.fcard .sub{color:#c4c4bc;margin:0 0 26px;line-height:1.55}
+.fcard form{display:flex;flex-direction:column;flex:1}
+.fcard form .gbtn{align-self:flex-start;margin-top:auto}
+.yellowcard{background:rgba(255,196,0,.94);color:#000;border:1px solid rgba(255,220,120,.6);box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.yellowcard .kicker{color:#000;opacity:.75}
+.yellowcard .y{color:#000}
+.yellowcard .sub{color:rgba(0,0,0,.75)}
+.yellowcard .field label{color:rgba(0,0,0,.7)}
+.yellowcard .field input,.yellowcard .field select,.yellowcard .field textarea{background:rgba(255,255,255,.7);border-color:rgba(0,0,0,.18);color:#000}
+.yellowcard .field input::placeholder{color:rgba(0,0,0,.45)}
+.yellowcard .field input:focus,.yellowcard .field select:focus{border-color:#000;background:#fff}
+.yellowcard .field select{background-color:rgba(255,255,255,.7);background-image:linear-gradient(45deg,transparent 50%,#000 50%),linear-gradient(135deg,#000 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat}
+.yellowcard .field select:focus{background-color:#fff}
+.yellowcard .field select option{background:#fff;color:#000}
+.yellowcard .check{color:rgba(0,0,0,.8)}
+.yellowcard .check a{color:#000;text-decoration:underline}
+.yellowcard .check input{accent-color:#000}
+.yellowcard .error{color:#8a1c10}
+.yellowcard .field.invalid input,.yellowcard .field.invalid select{border-color:#8a1c10}
+.gbtn.black{background:#000;color:#fff}
+.gbtn.black:hover{background:#222}
+
+/* CV upload */
+.fileinput{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filedrop{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:22px 16px;border:1.5px dashed rgba(255,255,255,.25);border-radius:14px;background:rgba(0,0,0,.25);cursor:pointer;text-align:center;font-family:var(--sans)!important;font-size:15px!important;letter-spacing:0!important;text-transform:none!important;color:var(--text)!important;margin:0!important;transition:border-color .25s,background .25s}
+.filedrop svg{width:22px;height:22px;color:var(--yellow)}
+.filedrop small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.filedrop:hover,.filedrop.drag{border-color:var(--yellow);background:rgba(255,196,0,.08)}
+.filedrop.has{border-style:solid;border-color:var(--yellow)}
+.yellowcard .filedrop{border-color:rgba(0,0,0,.35);background:rgba(255,255,255,.45);color:#000!important}
+.yellowcard .filedrop svg{color:#000}
+.yellowcard .filedrop small{color:rgba(0,0,0,.6)}
+.yellowcard .filedrop:hover,.yellowcard .filedrop.drag,.yellowcard .filedrop.has{border-color:#000;background:rgba(255,255,255,.7)}
+.field.invalid .filedrop{border-color:#ff6b5b}
+
+.cstrip{margin-top:22px;border-radius:20px;padding:20px 26px;display:flex;flex-wrap:wrap;gap:14px 34px;align-items:baseline;color:#e2e2da;font-size:15px}
+.cstrip .k{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:4px}
+.cstrip a:hover{color:var(--yellow)}
+@media (max-width:900px){.forms2{grid-template-columns:1fr}.cstrip{flex-direction:column;gap:14px}}
+
+/* compact forms + phone hero fixes */
+#contact .ch-head{margin-bottom:4vh}
+.forms2,.cstrip{max-width:1120px;margin-left:auto;margin-right:auto}
+.forms2{gap:18px}
+.forms2 .fcard{padding:26px 28px;border-radius:20px}
+.forms2 .fcard h3{font-size:clamp(32px,3vw,44px);margin:8px 0 6px}
+.forms2 .fcard .sub{font-size:15px;margin:0 0 18px}
+.forms2 .gform .grid2{gap:0 16px}
+.forms2 .field{margin-bottom:14px}
+.forms2 .field label{margin-bottom:6px}
+.forms2 .field input,.forms2 .field select,.forms2 .field textarea{padding:10px 13px;font-size:15px;border-radius:10px}
+.forms2 .field textarea{min-height:0;height:76px}
+.forms2 .filedrop{padding:12px 14px;gap:3px;font-size:14px!important}
+.forms2 .filedrop svg{width:18px;height:18px}
+.forms2 .check{font-size:13px;margin:2px 0 18px}
+.forms2 .gbtn{padding:15px 24px;font-size:11px}
+.cstrip{margin-top:18px;padding:16px 24px;font-size:14px}
+@media (max-width:900px){
+  .hero{min-height:auto;justify-content:flex-start;padding:118px 20px 36px}
+  .hero:not(.sub) h1{font-size:clamp(36px,10.4vw,64px);line-height:.95}
+  .hero.sub{padding-top:128px}
+  .hero .eyebrow{display:block;line-height:1.6}
+  .forms2 .fcard{padding:22px 18px}
+}
+
+/* form switch */
+.ftabs{display:flex;gap:4px;padding:5px;border-radius:999px;max-width:520px;margin:0 auto 22px}
+.ftabs button{flex:1;border:0;background:transparent;color:rgba(245,245,240,.45);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 18px;border-radius:999px;cursor:pointer;transition:background .35s,color .35s}
+.ftabs button:hover{color:rgba(245,245,240,.8)}
+.ftabs button.on{background:var(--yellow);color:#000}
+.fpanes{display:block;max-width:760px}
+.fpanes .fcard[hidden]{display:none}
+.fpanes .fcard.active{animation:paneIn .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes paneIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.cstrip{max-width:760px}
+@media (max-width:900px){.ftabs{max-width:none}.ftabs button{padding:13px 8px;font-size:10px;letter-spacing:.12em}}
+
+/* form + details side by side */
+.fsplit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:22px;align-items:start;max-width:1240px;margin:0 auto}
+.fsplit .ftabs{max-width:none;margin:0 0 18px}
+.fsplit .fpanes{max-width:none}
+.fsplit .fdetails{grid-column:1;grid-row:1}
+.fsplit .fleft{grid-column:2;grid-row:1}
+.fdetails{position:sticky;top:100px;padding:34px 32px;border-radius:24px}
+.fdetails .mail{font-family:var(--serif);font-style:italic;display:inline-block;border-bottom:1px solid var(--yellow);line-height:1.1;font-size:clamp(28px,2.6vw,42px)}
+@media (max-width:900px){.fsplit{grid-template-columns:1fr}.fsplit .fleft{grid-column:1;grid-row:1}.fsplit .fdetails{grid-column:1;grid-row:2}.fdetails{position:static;padding:26px 22px}.fdetails .mail{font-size:26px;overflow-wrap:anywhere}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

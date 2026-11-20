@@ -11,7 +11,7 @@ if (!reduce && window.Lenis) {
   if (hasGsap) { lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0); }
   else { const raf = t => { lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf); }
 }
-const goTo = (hash) => { const el = document.querySelector(hash); if (!el) return; lenis ? lenis.scrollTo(el, { offset: -20, duration: 1.4 }) : el.scrollIntoView({ behavior: 'smooth' }); };
+const goTo = (hash) => { let el = document.querySelector(hash); if (!el) return; if (el.classList.contains('fcard')) { showPane(el.id); el = document.getElementById('contact') || el; } lenis ? lenis.scrollTo(el, { offset: -20, duration: 1.4 }) : el.scrollIntoView({ behavior: 'smooth' }); };
 document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const h = a.getAttribute('href'); if (h.length < 2) return; e.preventDefault(); closeMenu(); goTo(h); }));
 if (location.hash.length > 1) addEventListener('load', () => setTimeout(() => goTo(location.hash), 300));
 
@@ -137,9 +137,29 @@ if (hasGsap && window.ScrollTrigger && !reduce) {
   try { type = sessionStorage.getItem('gb_type') || ''; email = sessionStorage.getItem('gb_email') || ''; } catch (_) {}
   const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const sent = email ? `We'll be in touch at <strong>${esc(email)}</strong>. ` : '';
-  const msg = type === 'venue' ? "Thanks for your enquiry. We'll call you back soon, usually the same day."
+  const msg = type === 'venue' ? "Thanks for your enquiry. We'll get back to you soon, usually the same day."
     : type === 'talent' ? "You're on our list for roles that fit you."
     : type === 'contact' ? "Thanks for your message. We'll get back to you shortly."
     : "We'll be in touch soon.";
   body.innerHTML = sent + msg;
 })();
+
+/* CV drop zones */
+document.querySelectorAll('.filedrop').forEach(drop => {
+  const input = document.getElementById(drop.getAttribute('for')); if (!input) return;
+  const label = drop.querySelector('[data-file-label]');
+  const sync = () => { const f = input.files[0]; drop.classList.toggle('has', !!f); if (label) label.textContent = f ? f.name : 'Upload your CV'; };
+  input.addEventListener('change', sync);
+  ['dragenter','dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('drag'); }));
+  ['dragleave','drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('drag'); }));
+  drop.addEventListener('drop', e => { if (e.dataTransfer && e.dataTransfer.files.length) { input.files = e.dataTransfer.files; input.dispatchEvent(new Event('change', { bubbles: true })); } });
+});
+
+/* form switch */
+function showPane(id){
+  const panes = document.querySelectorAll('.fpanes .fcard'); if (!panes.length) return;
+  panes.forEach(p => { const on = p.id === id; p.hidden = !on; p.classList.toggle('active', on); });
+  document.querySelectorAll('.ftabs [data-pane]').forEach(b => { const on = b.dataset.pane === id; b.classList.toggle('on', on); b.setAttribute('aria-selected', String(on)); });
+  if (window.ScrollTrigger) ScrollTrigger.refresh();
+}
+document.querySelectorAll('.ftabs [data-pane]').forEach(b => b.addEventListener('click', () => showPane(b.dataset.pane)));
