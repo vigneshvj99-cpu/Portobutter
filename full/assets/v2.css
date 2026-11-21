@@ -468,4 +468,11 @@ html[data-theme="light"] footer .row,html[data-theme="light"] .footer-cols{color
 html[data-theme="light"] #cursor-ring{border-color:rgba(0,0,0,.4)}
 html[data-theme="light"] .guide{color:#151515}
 html[data-theme="light"] .thanks .tick{border-color:#b07a00;color:#b07a00}
+
+/* audit fixes */
+.soon{font-size:11px;padding:5px 10px}
+.hero{min-height:min(100vh,1000px)}
+@media (orientation:portrait){
+  .hero:not(.sub){min-height:auto;justify-content:flex-start;padding-top:clamp(118px,12vh,190px);padding-bottom:clamp(40px,6vh,90px)}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

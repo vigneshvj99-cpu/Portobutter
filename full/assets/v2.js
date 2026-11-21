@@ -30,7 +30,9 @@ let W, H, DPR, pts = [];
 function sizeNet(){
   DPR = Math.min(devicePixelRatio || 1, touch ? 1.5 : 2);
   W = net.width = innerWidth * DPR; H = net.height = innerHeight * DPR;
-  const n = Math.round(Math.min(touch ? 55 : 120, (innerWidth * innerHeight) / (touch ? 9000 : 11000)));
+  const lowPower = (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 4 || (navigator.connection && navigator.connection.saveData);
+  const cap = lowPower ? (touch ? 32 : 70) : (touch ? 55 : 120);
+  const n = Math.round(Math.min(cap, (innerWidth * innerHeight) / (touch ? 9000 : 11000)));
   pts = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .3 * DPR, vy: (Math.random() - .5) * .3 * DPR, r: (Math.random() * 1.2 + 1) * DPR }));
 }
 addEventListener('resize', sizeNet); sizeNet();
@@ -68,9 +70,11 @@ function frame(){
     ctx.fillStyle = isLight() ? `rgba(${170 + near * 30},${116 + near * 30},0,${0.8 + near * 0.2})` : `rgba(255,${200 + near * 40},${80 + near * 100},${0.75 + near * 0.25})`;
     ctx.beginPath(); ctx.arc(p.x, p.y, p.r + near * 1.5 * DPR, 0, 7); ctx.fill();
   }
-  if (!reduce) requestAnimationFrame(frame);
+  if (!reduce && !document.hidden) requestAnimationFrame(frame); else running = false;
 }
+let running = true;
 requestAnimationFrame(frame);
+document.addEventListener('visibilitychange', () => { if (!document.hidden && !reduce && !running) { running = true; requestAnimationFrame(frame); } });
 
 /* ---------- cursor ---------- */
 if (!touch && !reduce) {
@@ -105,6 +109,7 @@ addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 const countEl = document.getElementById('count'), bar = document.getElementById('bar'), loader = document.getElementById('loader');
 function intro(){
   if (!hasGsap || reduce) { if (loader) loader.remove(); return; }
+  if (!document.querySelector('.hero h1 .line > span')) { if (loader) loader.remove(); return; }
   gsap.set('.hero h1 .line > span', { yPercent: 110 });
   gsap.set('[data-fade]', { autoAlpha: 0, y: 20 });
   const tl = gsap.timeline();
