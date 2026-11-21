@@ -182,3 +182,10 @@ function isLight(){ return document.documentElement.dataset.theme === 'light'; }
   });
   sync();
 })();
+
+/* frosted header once scrolled */
+(function(){
+  const set = () => document.body.classList.toggle('scrolled', (window.scrollY || document.documentElement.scrollTop) > 24);
+  addEventListener('scroll', set, { passive: true });
+  set();
+})();

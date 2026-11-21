@@ -475,4 +475,26 @@ html[data-theme="light"] .thanks .tick{border-color:#b07a00;color:#b07a00}
 @media (orientation:portrait){
   .hero:not(.sub){min-height:auto;justify-content:flex-start;padding-top:clamp(118px,12vh,190px);padding-bottom:clamp(40px,6vh,90px)}
 }
+
+/* spacing + scrolled header */
+.chapter{padding:clamp(70px,11vh,150px) 0 clamp(50px,8vh,110px)}
+.ch-head{margin-bottom:clamp(26px,4.5vh,56px)}
+#contact .ch-head{margin-bottom:clamp(22px,3vh,40px)}
+.page{padding:clamp(20px,4vh,50px) 0 clamp(60px,9vh,120px)}
+header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(5,5,5,.62);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid rgba(255,255,255,.08);opacity:0;transition:opacity .35s ease;pointer-events:none}
+body.scrolled header::before{opacity:1}
+body.menu-open header::before{opacity:0}
+html[data-theme="light"] header::before{background:rgba(245,241,230,.72);border-bottom-color:rgba(0,0,0,.08)}
+header{transition:padding .35s ease}
+body.scrolled header{padding-top:14px;padding-bottom:14px}
+@media (max-width:900px){
+  .chapter{padding:56px 0 44px}
+  .ch-head{margin-bottom:26px}
+  .page{padding:16px 0 56px}
+  .hero .scroll-hint{display:none}
+  .hero:not(.sub){padding-bottom:28px}
+  .hero .trust{margin-top:24px}
+  .marquee{padding:16px 0}
+  body.scrolled header{padding-top:12px;padding-bottom:12px}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
