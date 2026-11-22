@@ -1,40 +1,74 @@
 /*
  * ONE place where every form submission goes.
  *
- * FORMSPREE_ID: paste the Formspree form ID here (e.g. "xyzabcd") and every
- * sign-up is emailed to you and stored in Formspree. While it is empty the
- * site only logs sign-ups to the browser console. NOTHING IS SAVED.
+ * Every enquiry is emailed to FORM_TO through FormSubmit (formsubmit.co).
+ * The very first submission makes FormSubmit send an "Activate form" email to
+ * that inbox; nothing is delivered until the link in it is clicked once.
+ * After activation, FormSubmit gives a private code: put it in FORM_TO in
+ * place of the email address so the address is not visible in the page.
  *
- * Later, swap the body of submitLead() for the JobAdder connection.
  * type: "venue" | "talent" | "contact"
- * CV uploads (talent forms) are sent as files; Formspree only accepts files on a paid plan.
+ * Forms with a CV attached are sent as a normal upload (FormSubmit only
+ * accepts files that way), then FormSubmit sends the visitor to thanks.html.
  */
-const FORMSPREE_ID = "";
+const FORM_TO = "sean@getbutter.co.uk";
+
+const SUBJECTS = {
+  venue: (d) => `New Find talent enquiry: ${d.name || ""}${d.venue ? ", " + d.venue : ""}`,
+  talent: (d) => `New talent registration: ${d.name || ""}${d.role ? ", " + d.role : ""}`,
+  contact: (d) => `New contact message: ${d.name || ""}`,
+};
+
+function gbSubject(type, data) {
+  return (SUBJECTS[type] || ((d) => `New ${type} enquiry: ${d.name || ""}`))(data);
+}
 
 window.submitLead = async function submitLead(type, data, form) {
-  if (!FORMSPREE_ID) {
-    console.warn("[Get Butter] FORMSPREE_ID not set. Sign-up NOT saved:", type, data);
-    await new Promise((r) => setTimeout(r, 400));
+  if (!FORM_TO) {
+    console.warn("[Get Butter] FORM_TO not set. Enquiry NOT sent:", type, data);
     return { ok: true };
   }
-  const subject = `New ${type} sign-up: ${data.name || ""}`;
+  const subject = gbSubject(type, data);
   const fileInput = form && form.querySelector('input[type="file"]');
-  let res;
+
   if (fileInput && fileInput.files.length) {
-    // CV attached: send as a file upload (needs a Formspree plan that accepts files)
-    const fd = new FormData(form);
-    fd.append("type", type);
-    fd.append("_subject", subject);
-    res = await fetch("https://formspree.io/f/" + FORMSPREE_ID, { method: "POST", headers: { Accept: "application/json" }, body: fd });
-  } else {
-    const clean = {};
-    Object.keys(data).forEach((k) => { if (data[k] === null || typeof data[k] !== "object") clean[k] = data[k]; });
-    res = await fetch("https://formspree.io/f/" + FORMSPREE_ID, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ type, _subject: subject, ...clean }),
-    });
+    // CV attached: real form upload so the file arrives as an attachment.
+    try {
+      sessionStorage.setItem("gb_name", (data.name || "").trim().split(/\s+/)[0] || "");
+      sessionStorage.setItem("gb_email", data.email || "");
+      sessionStorage.setItem("gb_type", type);
+    } catch (_) {}
+    const add = (name, value) => {
+      let el = form.querySelector(`input[type="hidden"][name="${name}"]`);
+      if (!el) { el = document.createElement("input"); el.type = "hidden"; el.name = name; form.appendChild(el); }
+      el.value = value;
+    };
+    add("_subject", subject);
+    add("_template", "table");
+    add("_captcha", "false");
+    add("form", type);
+    if (data.email) add("_replyto", data.email);
+    add("_next", new URL("thanks.html", location.href).href);
+    form.action = "https://formsubmit.co/" + FORM_TO;
+    form.method = "POST";
+    form.enctype = "multipart/form-data";
+    HTMLFormElement.prototype.submit.call(form);
+    await new Promise(() => {}); // the page is leaving; keep the button in its sending state
   }
+
+  const body = { _subject: subject, _template: "table", form: type };
+  Object.keys(data).forEach((k) => {
+    const v = data[k];
+    if (v === null || typeof v !== "object") body[k] = v;
+  });
+  if (data.email) body._replyto = data.email;
+  const res = await fetch("https://formsubmit.co/ajax/" + FORM_TO, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(body),
+  });
   if (!res.ok) throw new Error("Submit failed: " + res.status);
+  const out = await res.json().catch(() => ({}));
+  if (out && out.success === "false") throw new Error(out.message || "Submit failed");
   return { ok: true };
 };
