@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /full/
+Disallow: /thanks.html
+
+Sitemap: https://getbutter.co.uk/sitemap.xml
