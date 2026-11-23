@@ -131,7 +131,7 @@
       share.addEventListener("click", async () => {
         const url = new URL("index.html", location.href).href;
         try {
-          if (navigator.share) await navigator.share({ title: "Get Butter", text: "Hospitality recruitment, launching soon.", url });
+          if (navigator.share) await navigator.share({ title: "Butter", text: "Hospitality recruitment, launching soon.", url });
           else {
             await navigator.clipboard.writeText(url);
             share.textContent = "Link copied";
@@ -195,7 +195,7 @@
       detail.innerHTML = `<p class="empty">That role isn't available. <a href="jobs.html" style="color:var(--yellow)">See all jobs</a>.</p>`;
       document.querySelector("[data-apply]")?.remove();
     } else {
-      document.title = `${j.title} · ${j.location} · Get Butter`;
+      document.title = `${j.title} · ${j.location} · Butter`;
       detail.innerHTML = `
         <span class="mono eyebrow">${esc(j.area)} · ${esc(j.type)} · ${esc(j.location)}</span>
         <h1>${esc(j.title)}<span class="dot">.</span></h1>

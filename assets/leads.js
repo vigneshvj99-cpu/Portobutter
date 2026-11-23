@@ -22,7 +22,7 @@ const SUBJECTS = {
 function gbAutoReply(type, data) {
   const first = ((data.name || "").trim().split(/\s+/)[0] || "").replace(/[^\p{L}\p{M}'\-]/gu, "");
   const what = type === "talent" ? "registration" : "enquiry";
-  return `Hi ${first || "there"},\n\nThanks for getting in touch with Get Butter.\nWe've received your ${what} and will get back to you soon.\n\nThe Butter team · getbutter.co.uk`;
+  return `Hi ${first || "there"},\n\nThanks for getting in touch with Butter.\nWe've received your ${what} and will get back to you soon.\n\nThe Butter team · getbutter.co.uk`;
 }
 
 function gbSubject(type, data) {
@@ -31,7 +31,7 @@ function gbSubject(type, data) {
 
 window.submitLead = async function submitLead(type, data, form) {
   if (!FORM_TO) {
-    console.warn("[Get Butter] FORM_TO not set. Enquiry NOT sent:", type, data);
+    console.warn("[Butter] FORM_TO not set. Enquiry NOT sent:", type, data);
     return { ok: true };
   }
   const subject = gbSubject(type, data);

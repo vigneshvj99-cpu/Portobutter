@@ -1,4 +1,4 @@
-/* Get Butter: plain site script (no animation libraries, no effects). */
+/* Butter: plain site script (no animation libraries, no effects). */
 (function () {
   /* menu */
   const menu = document.getElementById('menu');
