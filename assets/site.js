@@ -38,6 +38,7 @@
     let el = document.querySelector(hash);
     if (!el) return false;
     if (el.classList.contains('fcard') && showPane(el.id)) el = document.getElementById('contact') || el;
+    if (el.closest && el.closest('.forms2.both') && innerWidth > 900) el = document.querySelector('#contact .ch-head') || el;
     el.scrollIntoView();
     return true;
   }

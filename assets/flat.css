@@ -100,3 +100,36 @@ header .menu-btn { min-height: 44px; padding: 0 20px; border-radius: 999px; curs
   .hero.sub h1 { font-size: clamp(32px, 10vh, 52px); }
 }
 @media (pointer: coarse) { a.v, .cstrip a { display: inline-flex; align-items: center; min-height: 40px; } }
+
+/* ---- forms section fits one laptop screen ---- */
+.forms2.both .fcard form .gbtn { margin-top: 0; }
+.forms2.both .yellowcard .cvfield { flex: 1; display: flex; flex-direction: column; }
+.forms2.both .yellowcard .cvfield .filedrop { flex: 1; }
+#contact .ch-head { scroll-margin-top: 100px; }
+.forms2.both .fcard { scroll-margin-top: 80px; }
+@media (min-width: 901px) {
+  #contact.chapter { padding-top: 56px; padding-bottom: 56px; }
+  #contact .ch-head { margin-bottom: 18px; }
+  #contact .ch-head .mono { margin-bottom: 6px; }
+  #contact .ch-head h2 { font-size: clamp(40px, 4.6vw, 64px); }
+  .forms2.both .fcard { padding: 20px 26px 22px; }
+  .forms2.both .fcard h3 { font-size: clamp(28px, 2.3vw, 36px); margin: 4px 0 4px; }
+  .forms2.both .fcard .sub { margin: 0 0 10px; font-size: 14px; }
+  .forms2.both .field { margin-bottom: 9px; }
+  .forms2.both .field label { margin-bottom: 4px; }
+  .forms2.both .field input, .forms2.both .field select, .forms2.both .field textarea { padding: 8px 12px; }
+  .forms2.both .field textarea { min-height: 0; }
+  .forms2.both .filedrop { flex-direction: row; flex-wrap: wrap; gap: 4px 10px; padding: 10px 14px; }
+  .forms2.both .filedrop svg { width: 18px; height: 18px; }
+  .forms2.both label.check { margin: 2px 0 12px; }
+}
+@media (min-width: 901px) and (max-height: 800px) {
+  header { padding-top: 12px !important; padding-bottom: 12px !important; }
+  #contact .ch-head { margin-bottom: 12px; scroll-margin-top: 86px; }
+  #contact .ch-head .mono { display: none; }
+  #contact .ch-head h2 { font-size: 40px; }
+  .forms2.both .fcard { padding-top: 16px; padding-bottom: 18px; }
+  .forms2.both .fcard .sub { margin-bottom: 8px; }
+  .forms2.both .field { margin-bottom: 7px; }
+  .forms2.both .filedrop { padding: 8px 14px; }
+}
