@@ -1,0 +1,78 @@
+/* Get Butter: plain black, no effects. Loaded after v2.css and overrides it. */
+html, body { background: #050505; scroll-behavior: auto; }
+body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: auto; }
+#net, .vignette, #cursor, #cursor-ring, .marquee, .theme-btn, .tdiv, .preview-tag { display: none !important; }
+
+/* glass becomes simple dark cards */
+.glass {
+  background: #111 !important;
+  border: 1px solid #262626 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+header .right.glass { background: #111 !important; }
+
+/* no movement anywhere */
+*, *::before, *::after { animation: none !important; transition-property: color, background-color, border-color !important; transition-duration: .15s !important; }
+.gcard, .gcard:nth-child(n), .gcard:hover,
+.tcard, .tcard:hover,
+.pbtn:hover, .gbtn:hover, .btn:hover, .circle-btn:hover,
+#menu a:hover .t, .qcard:hover { transform: none !important; }
+.gcard:hover, .tcard:hover { background: #161616 !important; border-color: var(--yellow) !important; }
+.split .w, .split .w > span { display: inline; }
+[data-rise], [data-fade], .hero h1 .line > span, .reveal { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+
+/* menu: instant, no circle reveal */
+#menu { clip-path: none !important; display: none; }
+#menu.open { display: flex; pointer-events: auto; }
+
+/* header bar: solid black once scrolled, no blur */
+header::before { background: #050505 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+body.scrolled header { padding-top: 24px; padding-bottom: 24px; }
+@media (max-width: 900px) { body.scrolled header { padding-top: 18px; padding-bottom: 18px; } }
+
+/* footer and fields stay plain */
+footer { background: #050505 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+.yellowcard { background: var(--yellow) !important; border-color: var(--yellow) !important; }
+
+/* bigger hero headline + buttons */
+.hero:not(.sub) h1 { font-size: clamp(60px, min(11.5vw, 19.5vh), 196px); }
+.hero:not(.sub) .hero-btns { margin-top: 34px; gap: 14px; }
+.hero:not(.sub) .hero-btns .pbtn { font-size: 13px; padding: 21px 34px; }
+@media (max-width: 900px) {
+  .hero:not(.sub) h1 { font-size: clamp(40px, 12vw, 74px); }
+  .hero:not(.sub) .hero-btns .pbtn { padding: 18px 26px; font-size: 12.5px; }
+}
+@media (max-width: 380px) { .hero:not(.sub) h1 { font-size: 10.9vw; } }
+
+
+/* yellow logo */
+header .logo { color: var(--yellow) !important; }
+body.menu-open header .logo { color: #000 !important; }
+
+
+
+/* yellow top bar, black logo, black menu pill */
+header { background: var(--yellow); color: #000; mix-blend-mode: normal; padding-top: 18px !important; padding-bottom: 18px !important; }
+header::before { display: none !important; }
+header .logo { color: #000 !important; }
+header .right.glass { background: #000 !important; border-color: #000 !important; color: #fff !important; }
+body.menu-open header .logo { color: #000 !important; }
+.hero:not(.sub) { padding-top: clamp(130px, 17vh, 190px); }
+.hero.sub { padding-top: clamp(150px, 22vh, 220px); }
+.thanks { padding-top: 150px; }
+#menu { padding-top: clamp(110px, 15vh, 140px); }
+@media (max-width: 900px) {
+  header { padding-top: 14px !important; padding-bottom: 14px !important; }
+  .hero:not(.sub) { padding-top: 112px; }
+  .hero.sub { padding-top: 124px; }
+}
+
+/* 30+ on its own */
+.stat { grid-template-columns: 1fr; }
+
+/* two forms side by side */
+.forms2.both { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 1240px; margin: 0 auto; align-items: stretch; }
+.forms2.both .fcard[hidden] { display: flex; }
+@media (max-width: 900px) { .forms2.both { grid-template-columns: 1fr; } }

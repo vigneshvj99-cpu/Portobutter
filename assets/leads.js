@@ -38,7 +38,7 @@ window.submitLead = async function submitLead(type, data, form) {
   const fileInput = form && form.querySelector('input[type="file"]');
 
   if (fileInput && fileInput.files.length) {
-    // CV attached: real form upload so the file arrives as an attachment.
+    // CV or job spec attached: real form upload so the file arrives as an attachment.
     try {
       sessionStorage.setItem("gb_name", (data.name || "").trim().split(/\s+/)[0] || "");
       sessionStorage.setItem("gb_email", data.email || "");

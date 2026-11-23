@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/v2.css">
-<script>try{var t=localStorage.getItem("gb_theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="stylesheet" href="assets/flat.css">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -40,26 +40,20 @@
   <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></symbol>
   <symbol id="i-li" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></symbol>
 </svg>
-<div id="cursor"></div><div id="cursor-ring"></div>
-<canvas id="net" aria-hidden="true"></canvas><div class="vignette"></div>
 
 <header>
   <a class="logo" href="#top" aria-label="Get Butter home">butter.</a>
   <div class="right glass">
-    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to light mode"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button>
-    <span class="tdiv" aria-hidden="true"></span>
     <button class="menu-btn mono" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu"><span id="menuLbl">Menu</span><span class="lines"></span></button>
   </div>
 </header>
 
-<nav id="menu" aria-label="Main" data-lenis-prevent>
+<nav id="menu" aria-label="Main">
   <ol>
     <li><a href="index.html" aria-current="page"><span class="t">Home</span><span class="d">Connecting venues with the right people</span></a></li>
-    <li><a href="#services"><span class="t">Services</span><span class="d">Temporary · Permanent · Senior appointments & Search · Advisory</span></a></li>
-    <li><a href="about.html"><span class="t">About</span><span class="d">30+ years in hospitality</span></a></li>
-    <li><a href="talent.html"><span class="t">For talent</span><span class="d">Find your next role</span></a></li>
+    <li><a href="#services"><span class="t">Services</span><span class="d">Temporary · Permanent · Senior Appointments · Advisory</span></a></li>
     <li><a href="jobs.html"><span class="t">Jobs</span><span class="d">Places worth working for</span></a></li>
-    <li><a href="resources.html"><span class="t">Resources</span><span class="d">Guides for talent and venues</span></a></li>
+    <li><a href="about.html"><span class="t">About</span><span class="d">30+ years in hospitality</span></a></li>
     <li><a href="contact.html"><span class="t">Contact</span><span class="d">Say hello</span></a></li>
   </ol>
 </nav>
@@ -75,7 +69,6 @@
     </h1>
     <div class="meta">
       <div>
-        <p class="promise" data-fade>Built on <span class="mark">30+ years</span> in hospitality, we find vetted people who <span class="mark">show up</span>, settle in and stay.</p>
         <div class="hero-btns" data-fade><a class="pbtn solid" href="#find-talent" data-cursor="Talk">Find talent</a><a class="pbtn glass" href="#register-home" data-cursor="Go">Find your next role</a></div>
       </div>
       <span class="scroll-hint mono" data-fade><i></i>Scroll to explore</span>
@@ -93,54 +86,22 @@
     <div class="cardgrid simple">
       <a class="gcard glass" href="#find-talent"><span class="t">Temporary</span><span class="d">Hourly staff for shifts, sickness, events and busy seasons, often at short notice.</span><span class="go">Talk to us →</span></a>
       <a class="gcard glass" href="#find-talent"><span class="t">Permanent</span><span class="d">Salaried hires from commis to general manager, matched to your venue and team.</span><span class="go">Talk to us →</span></a>
-      <a class="gcard glass" href="#find-talent"><span class="t">Senior appointments &amp; Search</span><span class="d">Head chefs, general managers and operations leaders, found through discreet, targeted search.</span><span class="go">Talk to us →</span></a>
+      <a class="gcard glass" href="#find-talent"><span class="t">Senior Appointments</span><span class="d">Head chefs, general managers and operations leaders, found through discreet, targeted search.</span><span class="go">Talk to us →</span></a>
       <a class="gcard glass" href="#find-talent"><span class="t">Advisory</span><span class="d">Advice on pay, rotas, team structure and staffing a new opening.</span><span class="go">Talk to us →</span></a>
     </div>
   </div></section>
 
-  <div class="marquee" aria-hidden="true"><div class="track" id="track"><span>Chefs</span><span>Bartenders</span><span>Front of house</span><span>Kitchen porters</span><span>General managers</span><span>Baristas</span><span>Chefs</span><span>Bartenders</span><span>Front of house</span><span>Kitchen porters</span><span>General managers</span><span>Baristas</span></div></div>
-
     <section class="chapter" id="why"><div class="wrap">
-    <div class="ch-head"><div><span class="mono">Why Butter</span><h2 class="split">We've done the shifts.</h2></div></div>
+    <div class="ch-head"><div><span class="mono">Why Butter</span><h2 class="split">Run by professionals with 30+ years' experience.</h2></div></div>
     <div class="stat">
       <div class="figure"><span id="years">0</span><sup>+</sup></div>
-      <ul class="glass">
-        <li data-rise><span class="mono">a</span><div><strong>Years in hospitality</strong><span>We know a busy Saturday service and what it takes to staff one.</span></div></li>
-        <li data-rise><span class="mono">b</span><div><strong>Every candidate met</strong><span>We speak to everyone we put forward, so you only see people worth interviewing.</span></div></li>
-        <li data-rise><span class="mono">c</span><div><strong>Local roots, UK reach</strong><span>Born in the Cotswolds, with candidates and venues across the UK.</span></div></li>
-      </ul>
     </div>
   </div></section>
 
-  <section class="chapter" id="talent"><div class="wrap">
-    <div class="ch-head"><div><span class="mono">For talent</span><h2 class="split">Find your next role.</h2></div></div>
-    <div class="talentgrid">
-      <div class="tcard glass" data-rise>
-        <p>Register once and we'll match you with places worth working for.</p>
-        <ul class="ticks">
-          <li><svg><use href="#i-check"/></svg>Permanent or temporary</li>
-          <li><svg><use href="#i-check"/></svg>Kitchen, bar or front of house</li>
-          <li><svg><use href="#i-check"/></svg>We talk outside normal hours</li>
-        </ul>
-      </div>
-      <div class="tcard glass cta" data-rise>
-        <span class="n">For chefs, bartenders &amp; front of house</span>
-        <h3>Ready when you are<span class="y">.</span></h3>
-        <a class="pbtn solid" href="#register-home" data-cursor="Go">Register with us →</a>
-      </div>
-    </div>
-  </div></section>
-
-  <section class="chapter" id="contact"><div class="wrap">
+    <section class="chapter" id="contact"><div class="wrap">
     <div class="ch-head"><div><span class="mono">Get started</span><h2 class="split">Hiring or looking?</h2></div></div>
-    <div class="fsplit">
-    <div class="fleft">
-    <div class="ftabs glass" role="tablist" aria-label="Choose a form">
-      <button type="button" role="tab" class="on" aria-selected="true" aria-controls="find-talent" data-pane="find-talent">Find talent</button>
-      <button type="button" role="tab" aria-selected="false" aria-controls="register-home" data-pane="register-home">Find your next role</button>
-    </div>
-    <div class="forms2 fpanes">
-      <div class="gform glass fcard active" id="find-talent" role="tabpanel">
+        <div class="forms2 both">
+      <div class="gform glass fcard" id="find-talent">
         <span class="kicker">For venues</span>
         <h3>Find talent<span class="y">.</span></h3>
         <p class="sub">Tell us who you need and we'll get back to you, usually the same day.</p>
@@ -152,14 +113,17 @@
             <div class="field"><label for="v-email">Email</label><input id="v-email" name="email" type="email" autocomplete="email" required></div>
             <div class="field"><label for="v-phone">Phone</label><input id="v-phone" name="phone" type="tel" autocomplete="tel"></div>
             <div class="field"><label for="v-town">Town / city</label><input id="v-town" name="town" required></div>
-            <div class="field"><label for="v-roles">Roles you need</label><select id="v-roles" name="roles" required><option value="">Choose…</option><option>Kitchen: chefs &amp; porters</option><option>Bar</option><option>Front of house</option><option>Management</option><option>Senior appointments &amp; Search</option><option>Advisory</option><option>A mix of roles</option></select></div>
+            <div class="field"><label for="v-roles">Roles you need</label><select id="v-roles" name="roles" required><option value="">Choose…</option><option>Kitchen: chefs &amp; porters</option><option>Bar</option><option>Front of house</option><option>Management</option><option>Senior Appointments</option><option>Advisory</option><option>A mix of roles</option></select></div>
           </div>
           <div class="field"><label for="v-msg">Tell us more (optional)</label><textarea id="v-msg" name="message" rows="3"></textarea></div>
+          <div class="field cvfield"><label for="v-spec">Upload job spec (optional)</label>
+            <label class="filedrop" for="v-spec"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0l-4.5 4.5M12 4l4.5 4.5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><span data-file-label data-default="Upload job spec">Upload job spec</span><small>PDF or Word · up to 5MB · click or drag it here</small></label>
+            <input id="v-spec" class="fileinput" name="job_spec" data-what="Job spec" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></div>
           <label class="check"><input type="checkbox" name="consent" value="yes" required><span>I'm happy for Get Butter to store my details to reply to me. See our <a href="privacy.html">privacy notice</a>.</span></label>
           <button class="gbtn" type="submit" data-cursor="Send">Send enquiry</button>
         </form>
       </div>
-      <div class="gform fcard yellowcard" id="register-home" role="tabpanel" hidden>
+      <div class="gform fcard yellowcard" id="register-home">
         <span class="kicker">For talent</span>
         <h3>Find your next role<span class="y">.</span></h3>
         <p class="sub">Register with us and hear about roles at places worth working for.</p>
@@ -174,24 +138,12 @@
             <div class="field"><label for="h-other">Other roles (optional)</label><input id="h-other" name="other_roles" placeholder="e.g. barista, events…"></div>
           </div>
           <div class="field cvfield"><label for="h-cv">Upload your CV (optional)</label>
-            <label class="filedrop" for="h-cv"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0l-4.5 4.5M12 4l4.5 4.5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><span data-file-label>Upload your CV</span><small>PDF or Word · up to 5MB · click or drag it here</small></label>
-            <input id="h-cv" class="fileinput" name="cv" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></div>
+            <label class="filedrop" for="h-cv"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0l-4.5 4.5M12 4l4.5 4.5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><span data-file-label data-default="Upload your CV">Upload your CV</span><small>PDF or Word · up to 5MB · click or drag it here</small></label>
+            <input id="h-cv" class="fileinput" name="cv" data-what="CV" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></div>
           <label class="check"><input type="checkbox" name="consent" value="yes" required><span>I'm happy for Get Butter to store my details and contact me about roles. See our <a href="privacy.html">privacy notice</a>.</span></label>
           <button class="gbtn black" type="submit" data-cursor="Send">Register</button>
         </form>
       </div>
-    </div>
-    </div>
-    <aside class="info glass fdetails">
-      <a class="mail" href="mailto:sean@getbutter.co.uk">sean@getbutter.co.uk</a>
-      <div class="facts" style="margin-top:26px">
-        <div><span class="k">Phone</span><a class="v" href="tel:+447805572205">07805 572205</a></div>
-        <div><span class="k">Hours</span><span class="v">Mon–Fri 9am–5pm</span></div>
-        <div><span class="k">Office</span><span class="v">Suite 213, Eagle Tower,<br>Montpellier Drive, Cheltenham GL50&nbsp;1TA</span></div>
-        <div><span class="k">Instagram</span><a class="v" href="https://www.instagram.com/butter_recruitment/" target="_blank" rel="noopener"><svg class="sico"><use href="#i-ig"/></svg>@butter_recruitment</a></div>
-        <div><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/company/butter-hospitality-recruitment/" target="_blank" rel="noopener"><svg class="sico"><use href="#i-li"/></svg>Butter Hospitality Recruitment</a></div>
-      </div>
-    </aside>
     </div>
   </div></section>
 </main>
@@ -210,11 +162,8 @@
   </div>
 </footer>
 
-<script src="assets/vendor/gsap.min.js"></script>
-<script src="assets/vendor/ScrollTrigger.min.js"></script>
-<script src="assets/vendor/lenis.min.js"></script>
 <script src="assets/leads.js"></script>
 <script src="assets/app.js"></script>
-<script src="assets/v2.js"></script>
+<script src="assets/site.js"></script>
 </body>
 </html>

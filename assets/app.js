@@ -28,11 +28,12 @@
       if (el.type === "checkbox") {
         if (el.required && !el.checked) msg = "Please tick to continue.";
       } else if (el.type === "file") {
-        if (el.required && !el.files.length) msg = "Please add your CV.";
+        const what = el.dataset.what || "File";
+        if (el.required && !el.files.length) msg = `Please add your ${what}.`;
         else if (el.files.length) {
           const f = el.files[0];
-          if (!/\.(pdf|docx?)$/i.test(f.name)) msg = "CV must be a PDF or Word file.";
-          else if (f.size > 5 * 1024 * 1024) msg = "CV must be under 5MB.";
+          if (!/\.(pdf|docx?)$/i.test(f.name)) msg = `${what} must be a PDF or Word file.`;
+          else if (f.size > 5 * 1024 * 1024) msg = `${what} must be under 5MB.`;
         }
       } else {
         const v = el.value.trim();
@@ -54,8 +55,8 @@
     });
     form.addEventListener("change", (e) => {
       if (e.target.type === "file") {
-        const label = form.querySelector("[data-file-label]");
-        if (label) label.textContent = e.target.files.length ? e.target.files[0].name : "Upload your CV";
+        const label = e.target.closest(".field").querySelector("[data-file-label]");
+        if (label) label.textContent = e.target.files.length ? e.target.files[0].name : (label.dataset.default || "Upload file");
       }
       if (e.target.closest(".invalid")) setError(e.target, "");
     });
