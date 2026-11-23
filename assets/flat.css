@@ -170,3 +170,8 @@ header .right, #menu { display: none !important; }
 /* About: two boxes same height */
 .two { align-items: stretch; }
 .two > .gpanel.prose { display: flex; flex-direction: column; justify-content: center; }
+/* optical left alignment: headline, subheading, buttons, chips share one edge */
+.hero:not(.sub) h1 { margin-left: -0.053em; }
+.hero .hero-sub { margin-left: -0.055em; }
+/* don't clip letters that drop below the line (g, p, y, j) */
+.line { overflow: visible !important; }
