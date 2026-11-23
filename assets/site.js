@@ -80,7 +80,7 @@
     try { type = sessionStorage.getItem('gb_type') || ''; email = sessionStorage.getItem('gb_email') || ''; } catch (_) {}
     const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     const sent = email ? `We'll be in touch at <strong>${esc(email)}</strong>. ` : '';
-    const msg = type === 'venue' ? "Thanks for your enquiry. We'll get back to you soon, usually the same day."
+    const msg = type === 'venue' ? "Thanks for your enquiry. We'll get back to you soon."
       : type === 'talent' ? "You're on our list for roles that fit you."
       : type === 'contact' ? "Thanks for your message. We'll get back to you shortly."
       : "We'll be in touch soon.";
