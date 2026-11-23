@@ -133,3 +133,40 @@ header .menu-btn { min-height: 44px; padding: 0 20px; border-radius: 999px; curs
   .forms2.both .field { margin-bottom: 7px; }
   .forms2.both .filedrop { padding: 8px 14px; }
 }
+
+/* ---- headline + subheading ---- */
+.hero .hero-sub { font-family: var(--serif); font-style: italic; font-weight: 400; color: #f5f5f0; font-size: clamp(24px, min(3.6vw, 6vh), 60px); line-height: 1.1; margin: 14px 0 0; }
+
+/* ---- menu across the top, every screen ---- */
+header { flex-wrap: wrap; }
+header .topnav { display: flex; align-items: center; gap: 30px; margin-left: auto; }
+header .topnav a { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #000; text-decoration: none; padding: 12px 0; border-bottom: 2px solid transparent; white-space: nowrap; }
+header .topnav a:hover, header .topnav a[aria-current="page"] { border-bottom-color: #000; }
+header .topnav a.tcta { background: #000; color: #fff; padding: 14px 22px; border-radius: 999px; border: 0; margin-left: 6px; }
+header .topnav a.tcta:hover { background: #222; }
+header .right, #menu { display: none !important; }
+@media (max-width: 1100px) { header .topnav { gap: 20px; } header .topnav a { font-size: 11px; letter-spacing: .12em; } }
+@media (max-width: 900px) {
+  header .topnav { gap: 14px; }
+  header .topnav a { font-size: 10.5px; letter-spacing: .08em; }
+  header .topnav a.tcta { padding: 11px 15px; margin-left: 2px; }
+}
+/* phones: links on a second line inside the yellow bar */
+@media (max-width: 640px) {
+  header { padding-bottom: 4px !important; row-gap: 2px; }
+  header .topnav { order: 2; width: 100%; margin-left: 0; justify-content: space-between; gap: 6px; }
+  header .topnav a { font-size: 11px; letter-spacing: .08em; padding: 14px 0 12px; }
+  header .topnav a.tcta { display: none; }
+  .hero:not(.sub) { padding-top: 140px; }
+  .hero.sub { padding-top: 150px; }
+  .thanks { padding-top: 170px; }
+  #contact .ch-head, .forms2.both .fcard { scroll-margin-top: 120px; }
+}
+@media (max-width: 350px) { header .topnav a { font-size: 10px; letter-spacing: .04em; } }
+
+/* two short lines: let the headline be bigger on phones and tablets */
+@media (max-width: 900px) { .hero:not(.sub) h1 { font-size: clamp(48px, 16vw, 120px); } }
+@media (orientation: landscape) and (max-height: 500px) { .hero:not(.sub) h1 { font-size: clamp(40px, 14vh, 64px); } }
+/* About: two boxes same height */
+.two { align-items: stretch; }
+.two > .gpanel.prose { display: flex; flex-direction: column; justify-content: center; }
