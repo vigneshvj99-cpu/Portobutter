@@ -19,6 +19,12 @@ const SUBJECTS = {
   contact: (d) => `New contact message: ${d.name || ""}`,
 };
 
+function gbAutoReply(type, data) {
+  const first = ((data.name || "").trim().split(/\s+/)[0] || "").replace(/[^\p{L}\p{M}'\-]/gu, "");
+  const what = type === "talent" ? "registration" : "enquiry";
+  return `Hi ${first || "there"},\n\nThanks for getting in touch with Get Butter.\nWe've received your ${what} and will get back to you soon.\n\nThe Butter team · getbutter.co.uk`;
+}
+
 function gbSubject(type, data) {
   return (SUBJECTS[type] || ((d) => `New ${type} enquiry: ${d.name || ""}`))(data);
 }
@@ -47,7 +53,7 @@ window.submitLead = async function submitLead(type, data, form) {
     add("_template", "table");
     add("_captcha", "false");
     add("form", type);
-    if (data.email) add("_replyto", data.email);
+    if (data.email) { add("_replyto", data.email); add("_autoresponse", gbAutoReply(type, data)); }
     add("_next", new URL("thanks.html", location.href).href);
     form.action = "https://formsubmit.co/" + FORM_TO;
     form.method = "POST";
@@ -61,7 +67,7 @@ window.submitLead = async function submitLead(type, data, form) {
     const v = data[k];
     if (v === null || typeof v !== "object") body[k] = v;
   });
-  if (data.email) body._replyto = data.email;
+  if (data.email) { body._replyto = data.email; body._autoresponse = gbAutoReply(type, data); }
   const res = await fetch("https://formsubmit.co/ajax/" + FORM_TO, {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
