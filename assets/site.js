@@ -34,6 +34,23 @@
   document.querySelectorAll('.ftabs [data-pane]').forEach((b) => b.addEventListener('click', () => showPane(b.dataset.pane)));
 
   /* same-page links: close the menu; links to a form open that form */
+  /* show only one form (hero buttons + switch links); null shows both */
+  function onlyForm(id) {
+    const box = document.querySelector('.forms2.both');
+    if (!box) return;
+    box.classList.toggle('single', !!id);
+    box.querySelectorAll('.fcard').forEach((c) => { c.classList.toggle('hide', !!id && c.id !== id); });
+  }
+  /* once the visitor scrolls away from the forms, show both again */
+  const formsSec = document.getElementById('contact');
+  if (formsSec && 'IntersectionObserver' in window) {
+    new IntersectionObserver((es) => {
+      es.forEach((e) => { if (!e.isIntersecting && document.querySelector('.forms2.both.single')) onlyForm(null); });
+    }).observe(formsSec);
+  }
+  document.querySelectorAll('.hero-btns a[href^="#"], a.fswitch').forEach((a) => a.addEventListener('click', () => {
+    onlyForm(a.dataset.only || a.getAttribute('href').slice(1));
+  }));
   function goTo(hash) {
     let el = document.querySelector(hash);
     if (!el) return false;
